@@ -1,0 +1,11 @@
+azure-storage-blob
+azure-storage-queue
+azure-identity
+numpy==1.24.4
+openai_whisper==20231117
+pandas==2.0.0
+pydub==0.25.1
+Requests==2.32.3
+
+# Note: ffmpeg must be installed separately. You can install it via Conda using the following command:
+# conda install -c conda-forge ffmpeg
