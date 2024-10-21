@@ -58,5 +58,5 @@ sensetive intformatiob (AZURE_ACCOUTN_URL, AZURE_CONTAINER_NAME, AZURE_USERNAME,
 (Ensure the appropriate API keys and endpoints are provided for Azure models.)
 
 ## Running the Code
-5. Run the script: `python main.py`
+5. Run the script: `python main.py <date>`
 The script will process the audio, extract insights, and returns botht the insight and the transcript  respectively.

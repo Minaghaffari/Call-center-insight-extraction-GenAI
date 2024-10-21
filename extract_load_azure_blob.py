@@ -11,37 +11,41 @@ from azure.identity import DefaultAzureCredential
 class AzureBlobAudioProcessor:
     def __init__(self, config):
         self.config = config
-        self.account_url = os.getenv('AZURE_ACCOUTN_URL') 
-        if not self.account_url: 
-            raise Exception("Azure account url not set in environment variables")
+        self.account_url = os.getenv('AZURE_ACCOUTN_URL')
+        if not self.account_url:
+            raise Exception(
+                "Azure account url not set in environment variables")
         self.container_name = os.getenv('AZURE_CONTAINER_NAME')
         if not self.container_name:
-            raise Exception('Azure container name not set in environment variables')
+            raise Exception(
+                'Azure container name not set in environment variables')
         self.voices_folder_prefix = config['voices_folder_prefix']
         self.container_client = None
 
     def login_to_azure(self):
         # Run the az login command using the username and password
         try:
-            password = os.getenv('AZURE_USERNAME')
+            username = os.getenv('AZURE_USERNAME')
             if not password:
-                raise Exception("Azure username not set in environment variables")
-            
+                raise Exception(
+                    "Azure username not set in environment variables")
+
             password = os.getenv('AZURE_PASSWORD')
             if not password:
-                raise Exception("Azure password not set in environment variables")
+                raise Exception(
+                    "Azure password not set in environment variables")
 
             # Define the Azure CLI command based on the OS and then use the standard 'az' command for Mac
             if platform.system() == "Darwin":  # macOS
-                subprocess.run(["az", "login", "--username", self.config['username'],
+                subprocess.run(["az", "login", "--username", username,
                                 "--password", password], check=True)
             elif platform.system() == "Windows":  # Windows
                 # Full path to az.cmd for Windows and then run the az login command using subprocess for Windows
                 az_path = r'C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin\az.cmd'
-                subprocess.run([az_path, "login", "--username", self.config['username'],
+                subprocess.run([az_path, "login", "--username", username,
                                 "--password", password], check=True)
 
-            print(f"Login successful with account: {self.config['username']}")
+            print(f"Login successful with account: {username}")
         except subprocess.CalledProcessError as e:
             print(f"An error occurred during login: {e}")
         except Exception as e:
