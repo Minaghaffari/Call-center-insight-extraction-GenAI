@@ -2,7 +2,8 @@
 
 ## Overview
 
-This repository provides a Python-based solution for extracting insights and transcribing call conversations from recorded audio files stored in Azure Blob Storage. Given a **call ID**, the system retrieves the corresponding audio file, generates its transcription, and extracts insights in the form of a list. These insights can then be appended to an existing table in our **Snowflake**, while the transcript itself is stored in **Azure Blob** Storage for future reference.
+This repository offers a Python-based solution for transcribing call conversations and extracting insights from recorded audio files stored in Azure Blob Storage. Given a **date** as input, the system retrieves the corresponding audio files from Azure, generates transcriptions, and extracts insights, saving them as a `.csv` file. These insights can be stored in cloud data warehouses like **Snowflake**, while both the `.txt` transcripts and `.csv` insights are stored in **Azure Blob Storage** for future reference.
+
 
 ## Features
 
